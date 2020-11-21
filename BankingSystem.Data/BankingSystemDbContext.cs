@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BankingSystem.Core.Entity;
+using BankingSystem.Data.DbMapping;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankingSystem.Data
 {
@@ -6,6 +8,17 @@ namespace BankingSystem.Data
     {
         public BankingSystemDbContext(DbContextOptions options) : base(options) { }
 
-        protected override void OnModelCreating(ModelBuilder builder) { }
+        public DbSet<Bank> Bank { get; set; }
+        public DbSet<Client> Client { get; set; }
+        public DbSet<DepositAccount> DepositAccount { get; set; }
+        public DbSet<SavingAccount> SavingAccount { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.MapBanks();
+            builder.MapClients();
+            builder.MapDepositAccounts();
+            builder.MapSavingAccounts();
+        }
     }
 }
