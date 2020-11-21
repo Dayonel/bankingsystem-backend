@@ -1,0 +1,24 @@
+[
+  {
+    "type": 1,
+    "annualInterestRate": 2.0
+  },
+  {
+    "type": 2,
+    "annualInterestRate": 1.0,
+    "depositPeriodInDays": 30,
+    "interestPayingFrequency": 6
+  },
+  {
+    "type": 2,
+    "annualInterestRate": 4.0,
+    "depositPeriodInDays": 180,
+    "interestPayingFrequency": 6
+  },
+  {
+    "type": 2,
+    "annualInterestRate": 5.0,
+    "depositPeriodInDays": 360,
+    "interestPayingFrequency": 6
+  }
+]
