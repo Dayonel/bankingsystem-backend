@@ -13,7 +13,7 @@ namespace BankingSystem.Core.Mappers
                 {
                     Id = account.Id,
                     AccountNumber = account.AccountNumber,
-                    AccountType = account.AccountType.ToString(),
+                    AccountType = account.AccountType?.Type.ToString(),
                     Balance = account.Balance
                 }
                 : null;

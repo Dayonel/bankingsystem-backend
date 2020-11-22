@@ -24,6 +24,7 @@ namespace BankingSystem.Data.Repository
         {
             return await _dbContext.Account
                 .Where(b => b.ClientId == clientId)
+                .Include(i => i.AccountType)
                 .ToListAsync();
         }
 
