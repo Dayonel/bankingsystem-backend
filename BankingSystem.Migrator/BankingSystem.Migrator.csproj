@@ -16,4 +16,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BankingSystem.Data\BankingSystem.Data.csproj" />
+  </ItemGroup>
+
 </Project>
