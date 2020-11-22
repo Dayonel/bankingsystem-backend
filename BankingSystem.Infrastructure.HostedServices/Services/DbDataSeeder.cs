@@ -14,8 +14,6 @@ namespace BankingSystem.Infrastructure.HostedServices.Services
 {
     public class DbDataSeeder : BackgroundService
     {
-        private const int AttemptsToConnect = 3;
-        private const int ReconnectDelayInMilliseconds = 5000;
         private const string FakeDataFolder = "FakeData";
 
         private readonly IServiceProvider _provider;
@@ -28,35 +26,11 @@ namespace BankingSystem.Infrastructure.HostedServices.Services
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await CheckConnection();
             await Migrate();
             await SeedBanks();
             await SeedClients();
             await SeedAccountTypes();
             await SeedAccounts();
-        }
-
-        private async Task CheckConnection()
-        {
-            using (var scope = _provider.CreateScope())
-            {
-                using (var _dbContext = scope.ServiceProvider.GetRequiredService<BankingSystemDbContext>())
-                {
-                    var connectAttempt = 0;
-                    while (connectAttempt < AttemptsToConnect)
-                    {
-                        if (await _dbContext.Database.CanConnectAsync())
-                        {
-                            Console.WriteLine("Successfully connected to database!");
-                            return;
-                        }
-
-                        Console.WriteLine("Retrying database connection...");
-                        await Task.Delay(ReconnectDelayInMilliseconds);
-                        connectAttempt++;
-                    }
-                }
-            }
         }
 
         #region Migration

@@ -10,9 +10,9 @@ namespace BankingSystem.Data.Factories
         {
             var builder = new DbContextOptionsBuilder<BankingSystemDbContext>();
 #if DEBUG
-            builder.UseSqlServer("Server=localhost;Database=BankingSystem;User Id=sa;Password=.0]--2G!*t54tfzup^WUdoeDBw:5F3qcKHNW>+MU>Qer?R3u+XzR~1A@oMN.5J_%",
+            builder.UseSqlite("DataSource=bankingsystem.db",
 #else
-            builder.UseSqlServer("Server=bankingsystemdb;Database=BankingSystem;User Id=sa;Password=.0]--2G!*t54tfzup^WUdoeDBw:5F3qcKHNW>+MU>Qer?R3u+XzR~1A@oMN.5J_%",
+            builder.UseSqlite("DataSource=bankingsystem.db",
 #endif
             opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(5).TotalSeconds));
             return new BankingSystemDbContext(builder.Options);

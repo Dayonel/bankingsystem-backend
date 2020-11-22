@@ -15,7 +15,7 @@ namespace BankingSystem.Infrastructure.DependencyBuilder
         public static void AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             #region DB
-            services.AddDbContext<BankingSystemDbContext>(options => options.UseSqlServer(configuration.GetConnectionString(nameof(BankingSystemDbContext))));
+            services.AddDbContext<BankingSystemDbContext>(options => options.UseSqlite(configuration.GetConnectionString(nameof(BankingSystemDbContext))));
             #endregion
 
             #region Services
