@@ -1,3 +1,12 @@
 ﻿using System;
 
-Console.WriteLine("Hello World!");
+namespace BankingSystem.Migrator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
