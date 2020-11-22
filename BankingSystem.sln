@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingSystem.Data", "Banki
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrator", "Migrator", "{A85BA098-7032-4A32-954B-CAA5A67B1640}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem.Migrator", "BankingSystem.Migrator\BankingSystem.Migrator.csproj", "{1971AA7C-925B-4D8D-8B18-9DFB90AEDA6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingSystem.Migrator", "BankingSystem.Migrator\BankingSystem.Migrator.csproj", "{1971AA7C-925B-4D8D-8B18-9DFB90AEDA6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingSystem.Infrastructure.HostedServices", "BankingSystem.Infrastructure.HostedServices\BankingSystem.Infrastructure.HostedServices.csproj", "{77229921-2490-4517-830A-BAF3C3A872D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{1971AA7C-925B-4D8D-8B18-9DFB90AEDA6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1971AA7C-925B-4D8D-8B18-9DFB90AEDA6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1971AA7C-925B-4D8D-8B18-9DFB90AEDA6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77229921-2490-4517-830A-BAF3C3A872D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77229921-2490-4517-830A-BAF3C3A872D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77229921-2490-4517-830A-BAF3C3A872D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77229921-2490-4517-830A-BAF3C3A872D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C739636C-5870-4107-8406-62D6D0318003} = {A2A957D1-639A-43DD-A3A9-F71A539AF01F}
 		{1971AA7C-925B-4D8D-8B18-9DFB90AEDA6E} = {A85BA098-7032-4A32-954B-CAA5A67B1640}
+		{77229921-2490-4517-830A-BAF3C3A872D6} = {A2A957D1-639A-43DD-A3A9-F71A539AF01F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C337633-FF6B-4A29-8A2B-4151A9DC72A4}

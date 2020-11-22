@@ -1,0 +1,27 @@
+[
+  {
+    "name": "ABN Amro",
+    "code": 1,
+    "address": "Gustav Mahlerlaan 10, 1082 PP Amsterdam"
+  },
+  {
+    "name": "ING",
+    "code": 2,
+    "address": "Bijlmerplein 880, 1102 MG Amsterdam"
+  },
+  {
+    "name": "RABO",
+    "code": 3,
+    "address": "Dam 16, 1012 NP Amsterdam"
+  },
+  {
+    "name": "SNS Bank",
+    "code": 4,
+    "address": "Ceintuurbaan 292HS, 1072 GK Amsterdam"
+  },
+  {
+    "name": "De Volksbank",
+    "code": 5,
+    "address": "Croeselaan 1, 3521 BJ Utrecht"
+  }
+]

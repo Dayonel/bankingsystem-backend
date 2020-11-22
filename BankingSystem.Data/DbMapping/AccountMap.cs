@@ -4,22 +4,22 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BankingSystem.Data.DbMapping
 {
-    public static class DepositAccountMap
+    public static class AccountMap
     {
-        public static ModelBuilder MapDepositAccounts(this ModelBuilder modelBuilder)
+        public static ModelBuilder MapAccounts(this ModelBuilder modelBuilder)
         {
-            EntityTypeBuilder<DepositAccount> entity = modelBuilder.Entity<DepositAccount>();
+            EntityTypeBuilder<Account> entity = modelBuilder.Entity<Account>();
 
             // Primary Key
             entity.HasKey(t => t.Id);
 
             // Relations
             entity.HasOne(p => p.Bank)
-                  .WithMany(o => o.DepositAccounts)
+                  .WithMany(o => o.Accounts)
                   .HasForeignKey(f => f.BankId);
 
             entity.HasOne(p => p.Client)
-                  .WithMany(o => o.DepositAccounts)
+                  .WithMany(o => o.Accounts)
                   .HasForeignKey(f => f.ClientId);
 
             return modelBuilder;

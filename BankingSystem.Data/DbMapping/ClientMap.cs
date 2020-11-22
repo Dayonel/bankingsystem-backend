@@ -15,11 +15,7 @@ namespace BankingSystem.Data.DbMapping
             entity.HasKey(t => t.Id);
 
             // Relations
-            entity.HasMany(p => p.DepositAccounts)
-                  .WithOne(o => o.Client)
-                  .HasForeignKey(f => f.ClientId);
-
-            entity.HasMany(p => p.SavingAccounts)
+            entity.HasMany(p => p.Accounts)
                   .WithOne(o => o.Client)
                   .HasForeignKey(f => f.ClientId);
 
