@@ -14,21 +14,47 @@ namespace BankingSystem.Infrastructure.HostedServices.Services
 {
     public class DbDataSeeder : BackgroundService
     {
-        private const string FakeDataFolderName = "FakeData";
+        private const int AttemptsToConnect = 3;
+        private const int ReconnectDelayInMilliseconds = 5000;
+        private const string FakeDataFolder = "FakeData";
 
         private readonly IServiceProvider _provider;
-        public DbDataSeeder(IServiceProvider provider)
+        private readonly IHostEnvironment _env;
+        public DbDataSeeder(IServiceProvider provider, IHostEnvironment env)
         {
             _provider = provider;
+            _env = env;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            await CheckConnection();
             await Migrate();
             await SeedBanks();
             await SeedClients();
             await SeedAccountTypes();
             await SeedAccounts();
+        }
+
+        private async Task CheckConnection()
+        {
+            using (var scope = _provider.CreateScope())
+            {
+                using (var _dbContext = scope.ServiceProvider.GetRequiredService<BankingSystemDbContext>())
+                {
+                    var connectAttempt = 0;
+                    while (connectAttempt < AttemptsToConnect)
+                    {
+                        if (await _dbContext.Database.CanConnectAsync())
+                        {
+                            return;
+                        }
+
+                        await Task.Delay(ReconnectDelayInMilliseconds);
+                        connectAttempt++;
+                    }
+                }
+            }
         }
 
         #region Migration
@@ -39,6 +65,7 @@ namespace BankingSystem.Infrastructure.HostedServices.Services
                 using (var _dbContext = scope.ServiceProvider.GetRequiredService<BankingSystemDbContext>())
                 {
                     await _dbContext.Database.MigrateAsync();
+                    await _dbContext.Database.EnsureCreatedAsync();
                 }
             }
         }
@@ -47,8 +74,8 @@ namespace BankingSystem.Infrastructure.HostedServices.Services
         #region Banks
         private async Task SeedBanks()
         {
-            var banks = JsonConvert.DeserializeObject<List<Bank>>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(),
-                $"/{FakeDataFolderName}/fake-banks.json")));
+            var banks = JsonConvert.DeserializeObject<List<Bank>>(File.ReadAllText(Path.Combine(_env.ContentRootPath,
+                $"{FakeDataFolder}/fake-banks.json")));
 
             using (var scope = _provider.CreateScope())
             {
@@ -67,8 +94,8 @@ namespace BankingSystem.Infrastructure.HostedServices.Services
         #region Clients
         private async Task SeedClients()
         {
-            var clients = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(),
-                $"/{FakeDataFolderName}/fake-clients.json")));
+            var clients = JsonConvert.DeserializeObject<List<Client>>(File.ReadAllText(Path.Combine(_env.ContentRootPath,
+                $"{FakeDataFolder}/fake-clients.json")));
 
             using (var scope = _provider.CreateScope())
             {
@@ -87,8 +114,8 @@ namespace BankingSystem.Infrastructure.HostedServices.Services
         #region Account types
         private async Task SeedAccountTypes()
         {
-            var accountTypes = JsonConvert.DeserializeObject<List<AccountType>>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(),
-                $"/{FakeDataFolderName}/fake-accounttypes.json")));
+            var accountTypes = JsonConvert.DeserializeObject<List<AccountType>>(File.ReadAllText(Path.Combine(_env.ContentRootPath,
+                $"{FakeDataFolder}/fake-accounttypes.json")));
 
             using (var scope = _provider.CreateScope())
             {
@@ -107,8 +134,8 @@ namespace BankingSystem.Infrastructure.HostedServices.Services
         #region Accounts
         private async Task SeedAccounts()
         {
-            var accounts = JsonConvert.DeserializeObject<List<Account>>(File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(),
-                $"/{FakeDataFolderName}/fake-accounts.json")));
+            var accounts = JsonConvert.DeserializeObject<List<Account>>(File.ReadAllText(Path.Combine(_env.ContentRootPath,
+                $"{FakeDataFolder}/fake-accounts.json")));
 
             using (var scope = _provider.CreateScope())
             {

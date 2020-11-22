@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BankingSystem.Data\BankingSystem.Data.csproj" />
+    <ProjectReference Include="..\BankingSystem.Infrastructure.HostedServices\BankingSystem.Infrastructure.HostedServices.csproj" />
   </ItemGroup>
 
 </Project>

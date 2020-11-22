@@ -2,9 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>64354088-cce9-44e2-8481-66eb8d8459a2</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.6.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3" />
@@ -13,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BankingSystem.Infrastructure.DependencyBuilder\BankingSystem.Infrastructure.DependencyBuilder.csproj" />
-    <ProjectReference Include="..\BankingSystem.Infrastructure.HostedServices\BankingSystem.Infrastructure.HostedServices.csproj" />
   </ItemGroup>
 
 </Project>

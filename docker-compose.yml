@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  web:
+    container_name: bankingsystem
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    expose:
+      - 5000
+    ports:
+      - 80:5000
+    depends_on:
+      - db
+      
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: bankingsystemdb
+    ports:
+      - 1433:1433
+    environment:
+      SA_PASSWORD: .0]--2G!*t54tfzup^WUdoeDBw:5F3qcKHNW>+MU>Qer?R3u+XzR~1A@oMN.5J_%
+      ACCEPT_EULA: Y
+    volumes:
+      - bankingsystemdb:/var/lib/mysql
+
+volumes:
+  bankingsystemdb:
