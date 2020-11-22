@@ -1,10 +1,10 @@
 ﻿namespace BankingSystem.Core.DTO
 {
-    public class SavingAccountDTO
+    public class AccountDTO
     {
         public int Id { get; set; }
         public int AccountNumber { get; set; }
         public float Balance { get; set; }
-        public float AnnualInterestRate { get; set; }
+        public string AccountType { get; set; }
     }
 }

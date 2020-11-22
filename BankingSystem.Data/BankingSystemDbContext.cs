@@ -10,15 +10,15 @@ namespace BankingSystem.Data
 
         public DbSet<Bank> Bank { get; set; }
         public DbSet<Client> Client { get; set; }
-        public DbSet<DepositAccount> DepositAccount { get; set; }
-        public DbSet<SavingAccount> SavingAccount { get; set; }
+        public DbSet<Account> Account { get; set; }
+        public DbSet<AccountType> AccountType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.MapBanks();
             builder.MapClients();
-            builder.MapDepositAccounts();
-            builder.MapSavingAccounts();
+            builder.MapAccounts();
+            builder.MapAccountTypes();
         }
     }
 }

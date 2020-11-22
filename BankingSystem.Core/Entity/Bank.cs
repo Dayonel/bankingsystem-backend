@@ -9,7 +9,6 @@ namespace BankingSystem.Core.Entity
         public int Code { get; set; }
         public string Address { get; set; }
 
-        public virtual List<DepositAccount> DepositAccounts { get; set; }
-        public virtual List<SavingAccount> SavingAccounts { get; set; }
+        public virtual List<Account> Accounts { get; set; }
     }
 }
