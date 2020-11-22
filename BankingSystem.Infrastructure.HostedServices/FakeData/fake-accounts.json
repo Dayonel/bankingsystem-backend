@@ -1,0 +1,42 @@
+[
+  {
+    "accountNumber": 1,
+    "balance": 268.66,
+    "bankId": 1,
+    "clientId": 1,
+    "accountTypeId": 1,
+    "dateCreated": "2020-11-22"
+  },
+  {
+    "accountNumber": 2,
+    "balance": 1500.0,
+    "bankId": 1,
+    "clientId": 1,
+    "accountTypeId": 2,
+    "dateCreated": "2020-05-01"
+  },
+  {
+    "accountNumber": 3,
+    "balance": 14.25,
+    "bankId": 1,
+    "clientId": 2,
+    "accountTypeId": 2,
+    "dateCreated": "2020-11-22"
+  },
+  {
+    "accountNumber": 4,
+    "balance": 4899.7,
+    "bankId": 1,
+    "clientId": 3,
+    "accountTypeId": 3,
+    "dateCreated": "2019-01-08"
+  },
+  {
+    "accountNumber": 5,
+    "balance": 15000.0,
+    "bankId": 2,
+    "clientId": 4,
+    "accountTypeId": 4,
+    "dateCreated": "2020-04-14"
+  }
+]

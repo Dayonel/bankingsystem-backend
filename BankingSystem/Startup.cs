@@ -1,47 +1,63 @@
+using BankingSystem.Extensions;
+using BankingSystem.Infrastructure.DependencyBuilder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Serilog;
 
 namespace BankingSystem
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile($"appsettings{(env.IsDevelopment() ? ".Development" : string.Empty)}.json", false, true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            #region DI
             services.AddControllers();
+            services.AddDependencies(Configuration);
+            services.ConfigureSwagger();
+            #endregion
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                loggerFactory.AddSerilog();
+                loggerFactory.AddFile("logs/bankingsystemapi-{Date}.txt", LogLevel.Information);
+            }
 
             app.UseHttpsRedirection();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BankingSystem API v1");
+            });
+
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors(builder => builder.AllowAnyHeader()
+                                          .AllowAnyMethod()
+                                          .AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {

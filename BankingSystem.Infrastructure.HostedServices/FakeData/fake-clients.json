@@ -1,0 +1,22 @@
+[
+  {
+    "name": "John Smith",
+    "address": "Westlandgracht 13, 1059 TM, Amsterdam"
+  },
+  {
+    "name": "Robert Williams",
+    "address": "Amstelveenseweg 30, 1081 JN, Amsterdam"
+  },
+  {
+    "name": "Michael Brown",
+    "address": "Reguliersbreestraat 63, 1017 CN, Amsterdam"
+  },
+  {
+    "name": "William Jones",
+    "address": "Korte Keizersstraat 83, 1011 GG, Amsterdam"
+  },
+  {
+    "name": "David Miller",
+    "address": "Nootdorpstraat 67, 1062 JL, Amsterdam"
+  }
+]
