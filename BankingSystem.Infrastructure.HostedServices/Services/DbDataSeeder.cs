@@ -47,9 +47,11 @@ namespace BankingSystem.Infrastructure.HostedServices.Services
                     {
                         if (await _dbContext.Database.CanConnectAsync())
                         {
+                            Console.WriteLine("Successfully connected to database!");
                             return;
                         }
 
+                        Console.WriteLine("Retrying database connection...");
                         await Task.Delay(ReconnectDelayInMilliseconds);
                         connectAttempt++;
                     }
